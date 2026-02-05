@@ -1,0 +1,20 @@
+name: Buduj plik EXE
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Instalacja bibliotek i budowanie
+      run: |
+        pip install pandas numpy openpyxl pyinstaller
+        pyinstaller --noconsole --onefile topsis_app.py
+    - name: Gotowy plik
+      uses: actions/upload-artifact@v3
+      with:
+        name: Aplikacja_TOPSIS_Windows
+        path: dist/topsis_app.exe
