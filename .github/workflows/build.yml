@@ -4,17 +4,17 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
     - name: Instalacja bibliotek i budowanie
       run: |
         pip install pandas numpy openpyxl pyinstaller
-        pyinstaller --noconsole --onefile topsis_app.py
+        pyinstaller --noconsole --onefile t.py
     - name: Gotowy plik
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Aplikacja_TOPSIS_Windows
-        path: dist/topsis_app.exe
+        path: dist/t.exe
